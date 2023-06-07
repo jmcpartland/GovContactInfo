@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import {NavigationContainer} from '@react-navigation/native';
 import Member from './Member';
 
 export default function App() {
@@ -20,18 +20,20 @@ export default function App() {
   }, [])
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView>
-        <View>
-          <Text style={styles.title}>Congress Contact Info</Text>
-          <FlatList
-            data={allSenators}
-            renderItem={({item}) => <Member members={item}/>}
-            keyExtractor={(item) => item.id}
-          />
-        </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <NavigationContainer>
+      <SafeAreaProvider>
+        <SafeAreaView>
+          <View>
+            <Text style={styles.title}>Congress Contact Info</Text>
+            <FlatList
+              data={allSenators}
+              renderItem={({item}) => <Member senateMember={item}/>}
+              keyExtractor={(item) => item.id}
+            />
+          </View>
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </NavigationContainer>
   );
 }
 
