@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
-import Member from './Member';
+import Member from './src/Member';
+import Home from './src/Home';
 
 export default function App() {
   const [allSenators, setAllSenators] = useState({})
@@ -22,16 +23,12 @@ export default function App() {
   return (
     <NavigationContainer>
       <SafeAreaProvider>
-        <SafeAreaView>
-          <View>
-            <Text style={styles.title}>Congress Contact Info</Text>
-            <FlatList
-              data={allSenators}
-              renderItem={({item}) => <Member senateMember={item}/>}
-              keyExtractor={(item) => item.id}
-            />
-          </View>
-        </SafeAreaView>
+          <SafeAreaView>
+            <View>
+              <Text style={styles.title}>Lookup Your Congressman</Text>
+              <Home />
+            </View>
+          </SafeAreaView>
       </SafeAreaProvider>
     </NavigationContainer>
   );
@@ -40,14 +37,21 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   title: {
-    fontSize: 22,
+    fontSize: 26,
     fontWeight: 'bold',
     marginBottom: 10,
     textAlign: 'center',
+    textAlignVertical: 'top',
+  },
+  image: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
   },
 });
