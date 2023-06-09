@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import Member from './src/Member';
 import Home from './src/Home';
+import { usStates, usStatesShort } from './src/utils';
 
 export default function App() {
   const [allSenators, setAllSenators] = useState({})
 
-  useEffect(() => {
-    fetch('https://api.propublica.org/congress/v1/118/senate/members.json', {
-      headers: { 
-        'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      setAllSenators(data.results[0].members)
-    })
-  }, [])
+  // useEffect(() => {
+  //   fetch('https://api.propublica.org/congress/v1/118/senate/members.json', {
+  //     headers: { 
+  //       'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'
+  //     }
+  //   })
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     setAllSenators(data.results[0].members)
+  //   })
+  // }, [])
 
   return (
     <NavigationContainer>
@@ -46,6 +47,13 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: 'bold',
     marginBottom: 10,
+    textAlign: 'center',
+    textAlignVertical: 'top',
+  },
+  states: {
+    fontSize: 13,
+    // fontWeight: 'bold',
+    margin: 8,
     textAlign: 'center',
     textAlignVertical: 'top',
   },
