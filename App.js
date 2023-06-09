@@ -7,19 +7,6 @@ import Home from './src/Home';
 import { usStates, usStatesShort } from './src/utils';
 
 export default function App() {
-  const [allSenators, setAllSenators] = useState({})
-
-  // useEffect(() => {
-  //   fetch('https://api.propublica.org/congress/v1/118/senate/members.json', {
-  //     headers: { 
-  //       'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'
-  //     }
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     setAllSenators(data.results[0].members)
-  //   })
-  // }, [])
 
   return (
     <NavigationContainer>

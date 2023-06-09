@@ -6,17 +6,17 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const Member = ({senateMember}) => {
+const Member = ({stateSenators}) => {
 
   const handlePress = () => {
-    console.log(senateMember.id);
+    console.log(stateSenators.id);
   };
 
   return (
     <TouchableOpacity onPress={handlePress}>
       <View style={[styles.card, styles.shadowProp]}>
         <Text style={styles.name}>
-          {senateMember.short_title} {senateMember.first_name} {senateMember.last_name}
+          {stateSenators.short_title} {stateSenators.first_name} {stateSenators.last_name}
         </Text>
       </View>
     </TouchableOpacity>
@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   card: {
-    margin: 5,
+    marginHorizontal: 25,
+    marginBottom: 15,
     padding: 12,
     backgroundColor: '#fff',
     borderColor: '#000',

@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { usStates, usStatesShort } from './utils';
+import Member from './Member';
 
 
 const Home = () => {
   const [selectedState, setSelectedState] = useState();
+  const [stateSenators, setStateSenators] = useState([])
 
   const usStatesList = usStates.map((s) => {
     return (
@@ -14,27 +16,44 @@ const Home = () => {
   });
 
   const selectState = () => {
-    return (
-      <Text>{selectedState}</Text>
-    )
+    fetch("https://api.propublica.org/congress/v1/members/senate/RI/current.json", {
+      headers: {'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'}
+    })
+    .then(response => response.json())
+    .then(data => {
+      setStateSenators(data.results)
+    });
+    listStateCongressmen();
   };
+
+  const listStateCongressmen = () => {
+    // if (stateSenators.length > 0) {
+    //   return <Text>Test</Text>
+    // }
+    if (stateSenators.length > 0) {
+      return (  
+        stateSenators.map((s) => {
+          return <Member stateSenators={s}/>
+        })
+      )
+    };
+  }
 
   return (
     <View>
       <Text style={styles.title}>Choose State</Text>
       <Picker
         selectedValue={selectedState}
-        prompt="Pick one, just one"
-        onValueChange={(itemValue, itemIndex) =>
-          setSelectedState(itemValue)
-      }>
+        onValueChange={(itemValue, itemIndex) => setSelectedState(itemValue)}>
         {usStatesList}
       </Picker>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={selectState}>
         <Text style={styles.buttonText}>OK</Text>
       </TouchableOpacity>
-
+      
+      {listStateCongressmen()}
+      
     </View>
   )
 }
@@ -51,6 +70,7 @@ const styles = StyleSheet.create({
   button: {
     padding: 5,
     marginHorizontal: 25,
+    marginBottom: 35,
     borderColor: 'black',
     borderRadius: 30,
     backgroundColor: 'lightblue',
