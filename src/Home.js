@@ -41,7 +41,10 @@ const Home = () => {
 
   return (
     <View>
-      <Text style={styles.title}>Choose State</Text>
+      <Text style={styles.title}>
+        Slect State
+      </Text>
+
       <Picker
         selectedValue={selectedState}
         onValueChange={(itemValue, itemIndex) => setSelectedState(itemValue)}>
