@@ -1,43 +1,38 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { usStates, usStatesShort } from './utils';
+import { states } from './utils';
 import Member from './Member';
 
 
 const Home = () => {
   const [selectedState, setSelectedState] = useState();
-  const [stateSenators, setStateSenators] = useState([])
+  const [stateSenators, setStateSenators] = useState([]);
 
-  const usStatesList = usStates.map((s) => {
+  const statesList = Object.keys(states).map((s) => {
     return (
         <Picker.Item key={s} label={s} value={s} />
     );
   });
 
   const selectState = () => {
-    fetch("https://api.propublica.org/congress/v1/members/senate/RI/current.json", {
+    fetch("https://api.propublica.org/congress/v1/members/senate/"+ states[selectedState] +"/current.json", {
       headers: {'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'}
     })
     .then(response => response.json())
-    .then(data => {
-      setStateSenators(data.results)
-    });
+    .then(data => setStateSenators(data.results));
     listStateCongressmen();
   };
 
   const listStateCongressmen = () => {
-    // if (stateSenators.length > 0) {
-    //   return <Text>Test</Text>
-    // }
     if (stateSenators.length > 0) {
       return (  
         stateSenators.map((s) => {
-          return <Member stateSenators={s}/>
+          return <Member stateSenator={s}/>
         })
       )
     };
-  }
+  };
 
   return (
     <View>
@@ -48,7 +43,7 @@ const Home = () => {
       <Picker
         selectedValue={selectedState}
         onValueChange={(itemValue, itemIndex) => setSelectedState(itemValue)}>
-        {usStatesList}
+        {statesList}
       </Picker>
 
       <TouchableOpacity style={styles.button} onPress={selectState}>
@@ -65,7 +60,8 @@ export default Home
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 18,
+    color: "darkblue",
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
     textAlignVertical: 'top',

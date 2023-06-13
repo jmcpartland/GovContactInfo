@@ -1,25 +1,20 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const Member = ({stateSenators}) => {
+const Member = ({stateSenator}) => {
 
   const handlePress = () => {
-    console.log(stateSenators.id);
+    console.log(stateSenator.id);
   };
 
   return (
     <TouchableOpacity onPress={handlePress}>
       <View style={[styles.card, styles.shadowProp]}>
         <Text style={styles.name}>
-          {stateSenators.short_title} {stateSenators.first_name} {stateSenators.last_name}
+          {stateSenator.short_title} {stateSenator.first_name} {stateSenator.last_name}
         </Text>
       </View>
-    </TouchableOpacity>
+    </TouchableOpacity> 
   );
 };
 
