@@ -1,12 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const Member = ({stateCongressman, selectedState}) => {
+const MembersList = ({stateCongressman, selectedState}) => {
 
   const handlePress = () => {
     console.log(stateCongressman.id);
   };
 
+  const listStateCongressmen = () => {
+    if (stateCongressmen.length > 0) {
+      return (
+        stateCongressmen.map((s) => {
+          return (
+            <Member stateCongressman={s} selectedState={selectedState}/>
+          )
+        })
+      )
+    };
+  };
+  
   return (
     <TouchableOpacity onPress={handlePress}>
       <View style={[styles.card, styles.shadowProp]}>
@@ -41,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Member;
+export default MembersList;

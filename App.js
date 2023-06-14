@@ -4,7 +4,6 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import Member from './src/Member';
 import Home from './src/Home';
-import { usStates, usStatesShort } from './src/utils';
 
 export default function App() {
 
@@ -29,6 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    marginBottom: 80,
   },
   title: {
     fontSize: 27,
