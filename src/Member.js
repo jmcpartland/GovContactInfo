@@ -4,14 +4,14 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 const Member = ({stateCongressman, selectedState}) => {
 
   const handlePress = () => {
-    console.log(stateCongressman.id);
+    console.log(stateCongressman);
   };
 
   return (
     <TouchableOpacity onPress={handlePress}>
       <View style={[styles.card, styles.shadowProp]}>
         <Text style={styles.name}>
-          {stateCongressman.short_title} {stateCongressman.first_name} {stateCongressman.last_name}
+          {stateCongressman.role} {stateCongressman.name} ({stateCongressman.party})
         </Text>
       </View>
     </TouchableOpacity>

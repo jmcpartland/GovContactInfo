@@ -5,24 +5,18 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Member from './Member';
 
 const MembersList = ({route, navigation}) => {
-  const { stateCongressmen, selectedState } = route.params;
+  const { allMembers, selectedState } = route.params;
 
-  const handlePress = () => {
-    console.log(stateCongressmen);
-  };
-
-  const stateCongressmenList = stateCongressmen.map((s) => {
+  const allMembersList = allMembers.map((s) => {
     return <Member stateCongressman={s} selectedState={selectedState}/>
   });
   
   return (
-    <TouchableOpacity onPress={handlePress}>
       <View>
         <Text style={styles.titleTop}>{selectedState}</Text>
         <Text style={styles.title}>Members of Congress</Text>
-        {stateCongressmenList}
+        {allMembersList}
       </View>
-    </TouchableOpacity>
   )
 };
 

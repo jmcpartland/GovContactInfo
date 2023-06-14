@@ -8,7 +8,8 @@ import { states } from './utils';
 
 const Home = ({ navigation }) => {
   const [selectedState, setSelectedState] = useState();
-  const [stateCongressmen, setStateCongressmen] = useState([]);
+  const [stateSenators, setStateSenators] = useState([]);
+  const [stateHouse, setStateHouse] = useState([]);
   const house = "https://api.propublica.org/congress/v1/members/house/" + states[selectedState] + "/current.json";
   const senate = "https://api.propublica.org/congress/v1/members/senate/" + states[selectedState] + "/current.json";
 
@@ -18,25 +19,54 @@ const Home = ({ navigation }) => {
     );
   });
 
+  // const selectState = () => {
+  //   fetch(house, {
+  //     headers: {'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'}
+  //   })
+  //   .then(response => response.json())
+  //   .then(data => setStateCongressmen(data.results))
+  //   membersList()
+  // };
+
   const selectState = () => {
+    fetch(senate, {
+      headers: {'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'}
+    })
+    .then(response => response.json())
+    .then(data => setStateSenators(data.results))
+    fetchHouse()
+  };
+
+  const fetchHouse = () => {
     fetch(house, {
       headers: {'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'}
     })
     .then(response => response.json())
-    .then(data => setStateCongressmen(data.results))
+    .then(data => {
+      // const results = Array.from(data.results)
+      // console.log(typeof data.results)
+      setStateHouse(data.results)
+      // return stateCongressmen
+    })
     membersList()
-  };
+  }
+
+
+
 
   const membersList = () => {
+    // console.log(stateHouse)
+    const allMembers = stateSenators.concat(stateHouse)
+    // console.log(allMembers)
       navigation.navigate('MembersList', {
-        stateCongressmen: stateCongressmen,
+        allMembers: allMembers,
         selectedState: selectedState,
       });
   };
 
   return (
     <View>
-    <Text style={styles.title}>
+      <Text style={styles.title}>
         Select State
       </Text>
 
