@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Picker } from '@react-native-picker/picker';
 import { states } from './utils';
-import Member from './Member';
 
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [selectedState, setSelectedState] = useState();
   const [stateCongressmen, setStateCongressmen] = useState([]);
+  const house = "https://api.propublica.org/congress/v1/members/house/" + states[selectedState] + "/current.json";
+  const senate = "https://api.propublica.org/congress/v1/members/senate/" + states[selectedState] + "/current.json";
 
   const statesList = Object.keys(states).map((s) => {
     return (
@@ -15,33 +18,25 @@ const Home = () => {
     );
   });
 
-  const house = "https://api.propublica.org/congress/v1/members/house/" + states[selectedState] + "/current.json";
-  const senate = "https://api.propublica.org/congress/v1/members/senate/" + states[selectedState] + "/current.json";
-
   const selectState = () => {
     fetch(house, {
       headers: {'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'}
     })
     .then(response => response.json())
     .then(data => setStateCongressmen(data.results))
-    stateCongressmenList()
+    membersList()
   };
 
-  const stateCongressmenList = () => {
-    if (stateCongressmen.length > 0) {
-      return (
-        stateCongressmen.map((s) => {
-          return (
-            <Member stateCongressman={s} selectedState={selectedState}/>
-          )
-        })
-      )
-    };
+  const membersList = () => {
+      navigation.navigate('MembersList', {
+        stateCongressmen: stateCongressmen,
+        selectedState: selectedState,
+      });
   };
 
   return (
     <View>
-      <Text style={styles.title}>
+    <Text style={styles.title}>
         Select State
       </Text>
 
@@ -54,14 +49,6 @@ const Home = () => {
       <TouchableOpacity style={styles.button} onPress={selectState}>
         <Text style={styles.buttonText}>OK</Text>
       </TouchableOpacity>
-      <View style={styles.container}>
-
-    </View>
-      <View>
-        <ScrollView>
-          {stateCongressmenList()}
-        </ScrollView>
-      </View>
     </View>
   )
 }

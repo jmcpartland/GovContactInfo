@@ -1,30 +1,26 @@
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import Member from './Member';
 
-const MembersList = ({stateCongressman, selectedState}) => {
+const MembersList = ({route, navigation}) => {
+  const { stateCongressmen, selectedState } = route.params;
 
   const handlePress = () => {
-    console.log(stateCongressman.id);
+    console.log(stateCongressmen);
   };
 
-  const listStateCongressmen = () => {
-    if (stateCongressmen.length > 0) {
-      return (
-        stateCongressmen.map((s) => {
-          return (
-            <Member stateCongressman={s} selectedState={selectedState}/>
-          )
-        })
-      )
-    };
-  };
+  const stateCongressmenList = stateCongressmen.map((s) => {
+    return <Member stateCongressman={s} selectedState={selectedState}/>
+  });
   
   return (
     <TouchableOpacity onPress={handlePress}>
-      <View style={[styles.card, styles.shadowProp]}>
-        <Text style={styles.name}>
-          {stateCongressman.short_title} {stateCongressman.first_name} {stateCongressman.last_name}
-        </Text>
+      <View>
+        <Text style={styles.titleTop}>{selectedState}</Text>
+        <Text style={styles.title}>Members of Congress</Text>
+        {stateCongressmenList}
       </View>
     </TouchableOpacity>
   )
@@ -36,7 +32,25 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 5,
   },
-  card: {
+  title: {
+    color: "darkblue",
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textAlignVertical: 'top',
+    // marginTop: 10,
+    marginBottom: 25,
+  },
+  titleTop: {
+    color: "darkblue",
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textAlignVertical: 'top',
+    marginTop: 10,
+    // marginBottom: 5,
+  },
+    card: {
     marginHorizontal: 25,
     marginBottom: 15,
     padding: 12,
