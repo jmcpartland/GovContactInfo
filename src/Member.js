@@ -11,7 +11,7 @@ const Member = ({stateCongressman, selectedState}) => {
     <TouchableOpacity onPress={handlePress}>
       <View style={[styles.card, styles.shadowProp]}>
         <Text style={styles.name}>
-          {stateCongressman.role} {stateCongressman.name} ({stateCongressman.party})
+          {stateCongressman.short_title} {stateCongressman.first_name} {stateCongressman.last_name} ({stateCongressman.party})
         </Text>
       </View>
     </TouchableOpacity>

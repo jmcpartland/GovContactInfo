@@ -1,14 +1,14 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Member from './Member';
+import { states } from './utils';
 
 const MembersList = ({route, navigation}) => {
-  const { allMembers, selectedState } = route.params;
+  const { allSenators, selectedState } = route.params;
 
-  const allMembersList = allMembers.map((s) => {
-    return <Member stateCongressman={s} selectedState={selectedState}/>
+  
+  const allMembersList = allSenators.map((s) => {
+    return <Member key={s.id} stateCongressman={s} selectedState={selectedState}/>
   });
   
   return (
@@ -21,20 +21,6 @@ const MembersList = ({route, navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  name: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  title: {
-    color: "darkblue",
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    textAlignVertical: 'top',
-    // marginTop: 10,
-    marginBottom: 25,
-  },
   titleTop: {
     color: "darkblue",
     fontSize: 24,
@@ -44,20 +30,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     // marginBottom: 5,
   },
-    card: {
-    marginHorizontal: 25,
-    marginBottom: 15,
-    padding: 12,
-    backgroundColor: '#fff',
-    borderColor: '#000',
-    borderWidth: 1,
-    borderRadius: 5,
-  },
-  shadowProp: {
-    shadowColor: '#171717',
-    shadowOffset: {width: -2, height: 3},
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
+  title: {
+    color: "darkblue",
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textAlignVertical: 'top',
+    // marginTop: 10,
+    marginBottom: 25,
   },
 });
 

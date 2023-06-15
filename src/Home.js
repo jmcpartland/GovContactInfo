@@ -1,17 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Picker } from '@react-native-picker/picker';
 import { states } from './utils';
 
-
 const Home = ({ navigation }) => {
   const [selectedState, setSelectedState] = useState();
-  const [stateSenators, setStateSenators] = useState([]);
-  const [stateHouse, setStateHouse] = useState([]);
-  const house = "https://api.propublica.org/congress/v1/members/house/" + states[selectedState] + "/current.json";
-  const senate = "https://api.propublica.org/congress/v1/members/senate/" + states[selectedState] + "/current.json";
+  const [allSenators, setAllSenators] = useState([]);
+  const [allHouse, setAllHouse] = useState([]);
+
+  const house = "https://api.propublica.org/congress/v1/118/house/members.json";
+  const senate = "https://api.propublica.org/congress/v1/118/senate/members.json";
+
+  useEffect(() => {
+    fetch(senate, {
+      headers: {'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'}
+    })
+    .then(response => response.json())
+    .then(data => setAllSenators(data.results[0].members))
+    
+    // const hosueFetch = fetch(house, {
+    //     headers: {'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'}
+    //   })
+    //   .then(response => response.json())
+    //   .then(data => setAllHouse(data.results[0].members))
+  }, []);
+
 
   const statesList = Object.keys(states).map((s) => {
     return (
@@ -19,48 +34,11 @@ const Home = ({ navigation }) => {
     );
   });
 
-  // const selectState = () => {
-  //   fetch(house, {
-  //     headers: {'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'}
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => setStateCongressmen(data.results))
-  //   membersList()
-  // };
-
   const selectState = () => {
-    fetch(senate, {
-      headers: {'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'}
-    })
-    .then(response => response.json())
-    .then(data => setStateSenators(data.results))
-    fetchHouse()
-  };
-
-  const fetchHouse = () => {
-    fetch(house, {
-      headers: {'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'}
-    })
-    .then(response => response.json())
-    .then(data => {
-      // const results = Array.from(data.results)
-      // console.log(typeof data.results)
-      setStateHouse(data.results)
-      // return stateCongressmen
-    })
-    membersList()
-  }
-
-
-
-
-  const membersList = () => {
-    // console.log(stateHouse)
-    const allMembers = stateSenators.concat(stateHouse)
-    // console.log(allMembers)
+    console.log(allSenators)
       navigation.navigate('MembersList', {
-        allMembers: allMembers,
         selectedState: selectedState,
+        allSenators: allSenators,
       });
   };
 
