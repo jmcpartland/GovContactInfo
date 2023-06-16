@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, SectionList, StatusBar, } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { states } from './utils';
 import { DataContext } from "./context";
@@ -29,21 +29,23 @@ const Home = ({ navigation }) => {
   };
 
   return (
-    <View>
-      <Text style={styles.title}>
-        Select State
-      </Text>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Text style={styles.title}>
+          Select State
+        </Text>
 
-      <Picker
-        selectedValue={selectedState}
-        onValueChange={(itemValue, itemIndex) => setSelectedState(itemValue)}>
-        {statesList}
-      </Picker>
+        <Picker
+          selectedValue={selectedState}
+          onValueChange={(itemValue, itemIndex) => setSelectedState(itemValue)}>
+          {statesList}
+        </Picker>
 
-      <TouchableOpacity style={styles.button} onPress={selectState}>
-        <Text style={styles.buttonText}>OK</Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity style={styles.button} onPress={selectState}>
+          <Text style={styles.buttonText}>OK</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   )
 }
 
@@ -51,7 +53,8 @@ export default Home
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 50,
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,    
   },
   title: {
     color: "darkblue",

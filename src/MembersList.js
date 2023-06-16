@@ -1,30 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, FlatList, SafeAreaView, StatusBar } from 'react-native';
 import Member from './Member';
 import { states } from './utils';
 
 const MembersList = ({route, navigation}) => {
   const { stateCongress, selectedState } = route.params;
-  
-  // const stateCongress = allCongress.filter((c) => c.state === `"${states[selectedState]}"`);
-  
-  // console.log(allCongress);
 
-
-  const allMembersList = stateCongress.map((s) => {
-    return <Member key={s.id} congressman={s} selectedState={selectedState}/>
-  });
+  // const allMembersList = stateCongress.map((s) => {
+  //   return <Member key={s.id} congressman={s} selectedState={selectedState}/>
+  // });
   
   return (
-      <View>
+      <SafeAreaView style={styles.container}>
         <Text style={styles.titleTop}>{selectedState}</Text>
         <Text style={styles.title}>Members of Congress</Text>
-        {allMembersList}
-      </View>
+
+          <FlatList
+            data={stateCongress}
+            renderItem={({item}) => <Member congressman={item} selectedState={selectedState}/>}
+            keyExtractor={item => item.id}
+          />
+
+        {/* {allMembersList} */}
+      </SafeAreaView>
   )
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
   titleTop: {
     color: "darkblue",
     fontSize: 30,
