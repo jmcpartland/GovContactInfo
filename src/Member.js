@@ -11,7 +11,7 @@ const Member = ({congressman, selectedState}) => {
     <TouchableOpacity onPress={handlePress}>
       <View style={[styles.card, styles.shadowProp]}>
         <Text style={styles.name}>
-          {congressman.short_title} {congressman.first_name} {congressman.last_name} ({congressman.party} - {congressman.state})
+          {congressman.short_title} {congressman.first_name} {congressman.last_name} ({congressman.party})
         </Text>
       </View>
     </TouchableOpacity>
@@ -29,9 +29,9 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     padding: 12,
     backgroundColor: '#fff',
-    borderColor: '#000',
-    borderWidth: 1,
-    borderRadius: 5,
+    // borderColor: '#fff',
+    // borderWidth: 1,
+    borderRadius: 17,
   },
   shadowProp: {
     shadowColor: '#171717',

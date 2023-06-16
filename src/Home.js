@@ -1,17 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Picker } from '@react-native-picker/picker';
 import { states } from './utils';
 import { DataContext } from "./context";
 
-
 const Home = ({ navigation }) => {
   const [selectedState, setSelectedState] = useState();
   const allCongress = useContext(DataContext);
-
-  // console.log(allCongress)
 
   const statesList = Object.keys(states).map((s) => {
     return (
@@ -21,13 +16,16 @@ const Home = ({ navigation }) => {
 
   const stateCongress = allCongress.filter((c) => c.state === states[selectedState]);
 
+  const stateCongressSorted = stateCongress.sort(function(a, b) {
+    return a["last_name"] - b["last_name"];
+});
+
+
   const selectState = () => {
-    // stateCongress = allCongress.filter((c) => c.state == `"${states[selectedState]}"`);
-    // console.log("From Home:" + stateCongress)
-      navigation.navigate('MembersList', {
-        selectedState: selectedState,
-        stateCongress: stateCongress,
-      });
+    navigation.navigate('MembersList', {
+      selectedState: selectedState,
+      stateCongress: stateCongressSorted,
+    });
   };
 
   return (

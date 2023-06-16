@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -15,8 +15,16 @@ export default function App() {
       <SafeAreaProvider>
         <DataProvider>
           <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Lookup Your Members of Congress" component={Home} />
-            <Stack.Screen name="MembersList" component={MembersList} />
+            <Stack.Screen 
+              name="Lookup Your Members of Congress" 
+              component={Home}
+              
+            />
+            <Stack.Screen 
+              name="MembersList" 
+              component={MembersList}
+              options={{ title: 'Members of Congress' }}
+            />
           </Stack.Navigator>
         </DataProvider>
       </SafeAreaProvider>
@@ -42,7 +50,6 @@ const styles = StyleSheet.create({
   },
   states: {
     fontSize: 13,
-    // fontWeight: 'bold',
     margin: 8,
     textAlign: 'center',
     textAlignVertical: 'top',

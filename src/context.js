@@ -5,15 +5,10 @@ const DataContext = React.createContext();
 
 // create provider component
 function DataProvider({ children }) {
-
-  // const [allSenators, setAllSenators] = useState([]);
-  // const [allHouse, setAllHouse] = useState([]);
   const [allCongress, setAllCongress] = useState([]);
   const house = "https://api.propublica.org/congress/v1/118/house/members.json";
   const senate = "https://api.propublica.org/congress/v1/118/senate/members.json";
-  // const proPublicaHeader = {"X-API-Key": "tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI", 
-  //                            "Content-Type": "application/json",};
-  // let congressData = [];
+
 
     useEffect(() => {
       Promise.all([
@@ -35,34 +30,9 @@ function DataProvider({ children }) {
         )
         .then(([dataSenate, dataHouse]) => {
           setAllCongress([dataSenate.results[0].members, dataHouse.results[0].members].flat(1));
-          // console.log(dataSenate.results[0].members, dataHouse.results[0].members)
-          // setAllSenators(dataSenate); //.results[0].members
-          // setAllHouse(dataHouse);
-          // congressData = [dataSenate.results[0].members, dataHouse.results[0].members].flat(1);
         });
       }, []);
       
-      // console.log(allCongress)
-
-
-    // useEffect(() => {
-    //   fetch(senate, {
-    //     headers: {
-    //       "X-API-Key": "tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI",
-    //       "Content-Type": "application/json",
-    //     },
-    //   })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log(data.results[0].members)
-    //     // setAllCongress(data);
-    //   });
-    // }, []);
-    
-    // console.log("From Context:" + allCongress)
-    
-    // const DataContext = React.createContext(allCongress);
-
     return (
         <DataContext.Provider value={allCongress}>
             {children}

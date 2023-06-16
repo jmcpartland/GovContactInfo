@@ -27,20 +27,18 @@ const MembersList = ({route, navigation}) => {
 const styles = StyleSheet.create({
   titleTop: {
     color: "darkblue",
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
     textAlignVertical: 'top',
     marginTop: 10,
-    // marginBottom: 5,
   },
   title: {
     color: "darkblue",
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
     textAlignVertical: 'top',
-    // marginTop: 10,
     marginBottom: 25,
   },
 });
