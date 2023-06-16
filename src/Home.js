@@ -1,32 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Picker } from '@react-native-picker/picker';
 import { states } from './utils';
+import { DataContext, DataProvider } from "./context";
+
 
 const Home = ({ navigation }) => {
   const [selectedState, setSelectedState] = useState();
-  const [allSenators, setAllSenators] = useState([]);
-  const [allHouse, setAllHouse] = useState([]);
+  const allCongress = useContext(DataContext);
 
-  const house = "https://api.propublica.org/congress/v1/118/house/members.json";
-  const senate = "https://api.propublica.org/congress/v1/118/senate/members.json";
-
-  useEffect(() => {
-    fetch(senate, {
-      headers: {'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'}
-    })
-    .then(response => response.json())
-    .then(data => setAllSenators(data.results[0].members))
-    
-    // const hosueFetch = fetch(house, {
-    //     headers: {'X-API-Key': 'tNm5YIP9zO7SCYymYDfjB73IRmhUzMmC8beETVXI'}
-    //   })
-    //   .then(response => response.json())
-    //   .then(data => setAllHouse(data.results[0].members))
-  }, []);
-
+  // console.log("From Home:" + allCongress)
 
   const statesList = Object.keys(states).map((s) => {
     return (
@@ -34,16 +19,20 @@ const Home = ({ navigation }) => {
     );
   });
 
+  // const stateCongress = allCongress.filter((c) => c.state === states[selectedState]);
+
+
   const selectState = () => {
-    console.log(allSenators)
-      navigation.navigate('MembersList', {
-        selectedState: selectedState,
-        allSenators: allSenators,
-      });
+    console.log("From Home:" + allCongress)
+      // navigation.navigate('MembersList', {
+      //   selectedState: selectedState,
+      //   allCongress: stateCongress,
+      // });
   };
 
   return (
     <View>
+      <DataProvider>
       <Text style={styles.title}>
         Select State
       </Text>
@@ -57,6 +46,7 @@ const Home = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={selectState}>
         <Text style={styles.buttonText}>OK</Text>
       </TouchableOpacity>
+      </DataProvider>
     </View>
   )
 }

@@ -1,17 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const Member = ({stateCongressman, selectedState}) => {
+const Member = ({congressman, selectedState}) => {
 
   const handlePress = () => {
-    console.log(stateCongressman);
+    console.log(congressman);
   };
 
   return (
     <TouchableOpacity onPress={handlePress}>
       <View style={[styles.card, styles.shadowProp]}>
         <Text style={styles.name}>
-          {stateCongressman.short_title} {stateCongressman.first_name} {stateCongressman.last_name} ({stateCongressman.party})
+          {congressman.short_title} {congressman.first_name} {congressman.last_name} ({congressman.party} - {congressman.state})
         </Text>
       </View>
     </TouchableOpacity>

@@ -12,12 +12,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <SafeAreaProvider>
-
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Lookup Your Members of Congress" component={Home} />
           <Stack.Screen name="MembersList" component={MembersList} />
         </Stack.Navigator>
-
       </SafeAreaProvider>
     </NavigationContainer>
   );

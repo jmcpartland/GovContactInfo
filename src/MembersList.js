@@ -4,11 +4,15 @@ import Member from './Member';
 import { states } from './utils';
 
 const MembersList = ({route, navigation}) => {
-  const { allSenators, selectedState } = route.params;
-
+  const { stateCongress, selectedState } = route.params;
   
-  const allMembersList = allSenators.map((s) => {
-    return <Member key={s.id} stateCongressman={s} selectedState={selectedState}/>
+  // const stateCongress = allCongress.filter((c) => c.state === `"${states[selectedState]}"`);
+  
+  // console.log(stateCongress);
+
+
+  const allMembersList = stateCongress.map((s) => {
+    return <Member key={s.id} congressman={s} selectedState={selectedState}/>
   });
   
   return (
