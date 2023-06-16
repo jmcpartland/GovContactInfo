@@ -8,7 +8,7 @@ const MembersList = ({route, navigation}) => {
   
   // const stateCongress = allCongress.filter((c) => c.state === `"${states[selectedState]}"`);
   
-  // console.log(stateCongress);
+  // console.log(allCongress);
 
 
   const allMembersList = stateCongress.map((s) => {

@@ -4,14 +4,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Picker } from '@react-native-picker/picker';
 import { states } from './utils';
-import { DataContext, DataProvider } from "./context";
+import { DataContext } from "./context";
 
 
 const Home = ({ navigation }) => {
   const [selectedState, setSelectedState] = useState();
   const allCongress = useContext(DataContext);
 
-  // console.log("From Home:" + allCongress)
+  // console.log(allCongress)
 
   const statesList = Object.keys(states).map((s) => {
     return (
@@ -19,20 +19,19 @@ const Home = ({ navigation }) => {
     );
   });
 
-  // const stateCongress = allCongress.filter((c) => c.state === states[selectedState]);
-
+  const stateCongress = allCongress.filter((c) => c.state === states[selectedState]);
 
   const selectState = () => {
-    console.log("From Home:" + allCongress)
-      // navigation.navigate('MembersList', {
-      //   selectedState: selectedState,
-      //   allCongress: stateCongress,
-      // });
+    // stateCongress = allCongress.filter((c) => c.state == `"${states[selectedState]}"`);
+    // console.log("From Home:" + stateCongress)
+      navigation.navigate('MembersList', {
+        selectedState: selectedState,
+        stateCongress: stateCongress,
+      });
   };
 
   return (
     <View>
-      <DataProvider>
       <Text style={styles.title}>
         Select State
       </Text>
@@ -46,7 +45,6 @@ const Home = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={selectState}>
         <Text style={styles.buttonText}>OK</Text>
       </TouchableOpacity>
-      </DataProvider>
     </View>
   )
 }
