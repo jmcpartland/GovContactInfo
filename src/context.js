@@ -6,8 +6,8 @@ const DataContext = React.createContext();
 // create provider component
 function DataProvider({ children }) {
   const [allCongress, setAllCongress] = useState([]);
-  const house = "https://api.propublica.org/congress/v1/118/house/members.json";
-  const senate = "https://api.propublica.org/congress/v1/118/senate/members.json";
+  const house = "https://api.propublica.org/congress/v1/117/house/members.json";
+  const senate = "https://api.propublica.org/congress/v1/117/senate/members.json";
 
   useEffect(() => {
     Promise.all([

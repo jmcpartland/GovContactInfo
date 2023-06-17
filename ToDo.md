@@ -6,5 +6,5 @@
 * Find out most secure way to send API token
 * Create Postgress DB API and dump Congress data?
 
-
+* Fix Arizona Senator Krysten Sinema (2 listings as Democrat and Independant)
 

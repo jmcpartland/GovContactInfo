@@ -11,19 +11,20 @@ const MemberDetails = ({route, navigation}) => {
         {congressman.short_title} {congressman.first_name} {congressman.last_name}
       </Text>
       <View>
-        <Text>Title: {congressman.title}</Text>
-        <Text>Middle Name: {congressman.middle_name}</Text>
-        <Text>Gender: {congressman.gender}</Text>
-        <Text>D.O.B.: {congressman.date_of_birth}</Text>
-        <Text>District: {congressman.district}</Text>
-        <Text>Office Address: {congressman.office}</Text>
-        <Text>Phone: {congressman.phone}</Text>
-        <Text>Fax: {congressman.fax}</Text>
-        <Text>URL: {congressman.url}</Text>
-        <Text>Facebook Account: {congressman.facebook_account}</Text>
-        <Text>Twitter Account: {congressman.twitter_account}</Text>
-        <Text>YouTube Account: {congressman.youtube_account}</Text>
-        <Text>RSS: {congressman.rss_url}</Text>
+        <Text style={styles.details}>Title: {congressman.title}</Text>
+        <Text style={styles.details}>Middle Name: {congressman.middle_name}</Text>
+        <Text style={styles.details}>Gender: {congressman.gender}</Text>
+        <Text style={styles.details}>D.O.B.: {congressman.date_of_birth}</Text>
+        <Text style={styles.details}>District: {congressman.district}</Text>
+        <Text style={styles.details}>Office Address: {congressman.office}</Text>
+        <Text style={styles.details}>Phone: {congressman.phone}</Text>
+        <Text style={styles.details}>Fax: {congressman.fax}</Text>
+        <Text style={styles.details}>URL: {congressman.url}</Text>
+        <Text style={styles.details}>Facebook Account: {congressman.facebook_account}</Text>
+        <Text style={styles.details}>Twitter Account: {congressman.twitter_account}</Text>
+        <Text style={styles.details}>YouTube Account: {congressman.youtube_account}</Text>
+        <Text style={styles.details}>RSS: {congressman.rss_url}</Text>
+        <Text style={styles.details}>RSS: {congressman.id}</Text>
         {/* <Text>{congressman.geoid}</Text> */}
         {/* <Text>{congressman.google_entity_id}</Text> */}
         {/* <Text>{congressman.govtrack_id}</Text> */}
@@ -52,6 +53,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  details: {
+    fontSize: 18,
   },
   container: {
     marginHorizontal: 25,
