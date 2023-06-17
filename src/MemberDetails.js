@@ -1,21 +1,19 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-const MemberDetails = ({stateSenators}) => {
-
+const MemberDetails = ({route, navigation}) => {
+  const { congressman } = route.params;
 
   return (
-      <View style={styles.container}>
-        <Text style={styles.name}>
-          {stateSenators.short_title} {stateSenators.first_name} {stateSenators.last_name}
-        </Text>
-      </View>
+    <View style={styles.container}>
+      <Text style={styles.name}>
+        {congressman.short_title} {congressman.first_name} {congressman.last_name}
+      </Text>
+    </View>
   );
 };
+
+export default MemberDetails;
 
 const styles = StyleSheet.create({
   name: {
@@ -27,11 +25,5 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
     marginBottom: 15,
     padding: 12,
-    backgroundColor: '#fff',
-    borderColor: '#000',
-    borderWidth: 1,
-    borderRadius: 5,
   },
 });
-
-export default MemberDetails;

@@ -1,30 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList, SafeAreaView, StatusBar } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, FlatList, SafeAreaView, StatusBar } from 'react-native';
 import Member from './Member';
-import { states } from './utils';
 
 const MembersList = ({route, navigation}) => {
   const { stateCongress, selectedState } = route.params;
-
-  // const allMembersList = stateCongress.map((s) => {
-  //   return <Member key={s.id} congressman={s} selectedState={selectedState}/>
-  // });
   
   return (
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.titleTop}>{selectedState}</Text>
-        <Text style={styles.title}>Members of Congress</Text>
-
-          <FlatList
-            data={stateCongress}
-            renderItem={({item}) => <Member congressman={item} selectedState={selectedState}/>}
-            keyExtractor={item => item.id}
-          />
-
-        {/* {allMembersList} */}
-      </SafeAreaView>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.titleTop}>{selectedState}</Text>
+      <Text style={styles.title}>Members of Congress</Text>
+        <FlatList
+          data={stateCongress}
+          renderItem={({item}) => <Member congressman={item} selectedState={selectedState} navigation={navigation}/>}
+          keyExtractor={item => item.id}
+        />
+    </SafeAreaView>
   )
 };
+
+export default MembersList;
 
 const styles = StyleSheet.create({
   container: {
@@ -48,5 +42,3 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
 });
-
-export default MembersList;

@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const Member = ({congressman, selectedState}) => {
+const Member = ({congressman, navigation}) => {
 
   const handlePress = () => {
-    console.log(congressman);
+    navigation.navigate('MemberDetails', {
+      congressman: congressman,
+    });
   };
 
   return (
