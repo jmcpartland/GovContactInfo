@@ -1,20 +1,21 @@
-import React, { useState, useContext } from 'react';
-import { StyleSheet, Text, TouchableOpacity, SafeAreaView, StatusBar } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import { states } from './utils';
-import { DataContext } from "./context";
+/* eslint-disable max-len */
+import React, {useState, useContext} from 'react';
+import {StyleSheet, Text, TouchableOpacity, SafeAreaView, StatusBar} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
+import {states} from './utils';
+import {DataContext} from './context';
 
-const Home = ({ navigation }) => {
+const Home = ({navigation}) => {
   const [selectedState, setSelectedState] = useState();
   const allCongress = useContext(DataContext);
   const stateCongress = allCongress.filter((c) => c.state === states[selectedState]);
 
   const statesList = Object.keys(states).map((s) => {
-    return <Picker.Item key={s} label={s} value={s} />
+    return <Picker.Item key={s} label={s} value={s} />;
   });
 
   const stateCongressSorted = stateCongress.sort(function(a, b) {
-    return a["last_name"] - b["last_name"]
+    return a['last_name'] - b['last_name'];
   });
 
   const selectState = () => {
@@ -38,7 +39,7 @@ const Home = ({ navigation }) => {
         <Text style={styles.buttonText}>OK</Text>
       </TouchableOpacity>
     </SafeAreaView>
-  )
+  );
 };
 
 export default Home;
@@ -46,10 +47,10 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,    
+    paddingTop: StatusBar.currentHeight,
   },
   title: {
-    color: "darkblue",
+    color: 'darkblue',
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -70,4 +71,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
   },
-})
+});

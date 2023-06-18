@@ -1,65 +1,120 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+/* eslint-disable max-len */
+import React from 'react';
+import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
 
 const MemberDetails = ({route, navigation}) => {
-  const { congressman } = route.params;
-  console.log(congressman)
+  const {congressman} = route.params;
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.name}>
-        {congressman.short_title} {congressman.first_name} {congressman.last_name}
-      </Text>
-      <View>
-        <Text style={styles.details}>Title: {congressman.title}</Text>
-        <Text style={styles.details}>Middle Name: {congressman.middle_name}</Text>
-        <Text style={styles.details}>Gender: {congressman.gender}</Text>
-        <Text style={styles.details}>D.O.B.: {congressman.date_of_birth}</Text>
-        <Text style={styles.details}>District: {congressman.district}</Text>
-        <Text style={styles.details}>Office Address: {congressman.office}</Text>
-        <Text style={styles.details}>Phone: {congressman.phone}</Text>
-        <Text style={styles.details}>Fax: {congressman.fax}</Text>
-        <Text style={styles.details}>URL: {congressman.url}</Text>
-        <Text style={styles.details}>Facebook Account: {congressman.facebook_account}</Text>
-        <Text style={styles.details}>Twitter Account: {congressman.twitter_account}</Text>
-        <Text style={styles.details}>YouTube Account: {congressman.youtube_account}</Text>
-        <Text style={styles.details}>RSS: {congressman.rss_url}</Text>
-        <Text style={styles.details}>RSS: {congressman.id}</Text>
-        {/* <Text>{congressman.geoid}</Text> */}
-        {/* <Text>{congressman.google_entity_id}</Text> */}
-        {/* <Text>{congressman.govtrack_id}</Text> */}
-        {/* <Text>{congressman.last_updated}</Text> */}
-        {/* <Text>{congressman.leadership_role}</Text> */}
-        {/* <Text>{congressman.next_election}</Text> */}
-        {/* <Text>{congressman.party}</Text> */}
-        {/* <Text>{congressman.seniority}</Text> */}
-        {/* <Text>{congressman.short_title}</Text> */}
-        {/* <Text>{congressman.state}</Text> */}
-        {/* <Text>{congressman.suffix}</Text> */}
-        {/* <Text>{congressman.total_present}</Text> */}
-        {/* <Text>{congressman.total_votes}</Text> */}
-        {/* <Text>{congressman.votes_against_party_pct}</Text> */}
-        {/* <Text>{congressman.votes_with_party_pct}</Text> */}
-        {/* <Text>{congressman.votesmart_id}</Text> */}
+    return (
+      <View style={styles.container}>
+        <Text style={styles.name}>
+          {congressman.short_title} {congressman.first_name} {congressman.last_name}
+        </Text>
+
+        <View style={styles.detailsContainer}>
+          <Text style={styles.label}>Title:</Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.title}</Text>
+          </View>
+            <Text style={styles.label}>Party: </Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.party}</Text>
+          </View>
+            <Text style={styles.label}>Middle Name: </Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.middle_name}</Text>
+          </View>
+            <Text style={styles.label}>Gender: </Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.gender}</Text>
+          </View>
+            <Text style={styles.label}>D.O.B.: </Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.date_of_birth}</Text>
+          </View>
+            <Text style={styles.label}>District: </Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.district}</Text>
+          </View>
+            <Text style={styles.label}>Office Address: </Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.office}</Text>
+          </View>
+            <Text style={styles.label}>Phone: </Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.phone}</Text>
+          </View>
+            <Text style={styles.label}>Fax: </Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.fax}</Text>
+          </View>
+            <Text style={styles.label}>URL: </Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.url}</Text>
+          </View>
+            <Text style={styles.label}>Facebook Account: </Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.facebook_account}</Text>
+          </View>
+            <Text style={styles.label}>Twitter Account: </Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.twitter_account}</Text>
+          </View>
+            <Text style={styles.label}>YouTube Account: </Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.youtube_account}</Text>
+          </View>
+            <Text style={styles.label}>RSS: </Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.rss_url}</Text>
+          </View>
+            <Text style={styles.label}>Next Election: </Text>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{congressman.next_election}</Text>
+          </View>
+        </View>
       </View>
-    </View>
   );
 };
 
 export default MemberDetails;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    // justifyContent: 'left',
+    // alignItems: 'left',
+    marginHorizontal: 10,
+    marginBottom: 15,
+    // padding: 12,
+  },
+  detailsContainer: {
+    // marginHorizontal: 10,
+    // marginBottom: 15,
+    // padding: 12,
+  },
+  label: {
+    fontSize: 14, 
+    fontWeight: 'bold', 
+    textAlign: 'left',
+    paddingLeft: 10,
+  },
+  valueContainer: {
+    marginTop: 5,
+    marginBottom: 5,
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+  },
+  value: {
+    fontSize: 16, 
+    marginBottom: 5,
+    paddingLeft: 15,
+    textAlign: 'left',
+    height: 28,
+  },
   name: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
-  },
-  details: {
-    fontSize: 18,
-  },
-  container: {
-    marginHorizontal: 25,
-    marginBottom: 15,
-    padding: 12,
   },
 });

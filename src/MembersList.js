@@ -1,22 +1,31 @@
+/* eslint-disable max-len */
+/* eslint-disable require-jsdoc */
 import React from 'react';
-import { StyleSheet, Text, FlatList, SafeAreaView, StatusBar } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
 import Member from './Member';
 
-const MembersList = ({route, navigation}) => {
-  const { stateCongress, selectedState } = route.params;
-  
+function MembersList({route, navigation}) {
+  const {stateCongress, selectedState} = route.params;
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.titleTop}>{selectedState}</Text>
       <Text style={styles.title}>Members of Congress</Text>
-        <FlatList
-          data={stateCongress}
-          renderItem={({item}) => <Member congressman={item} selectedState={selectedState} navigation={navigation}/>}
-          keyExtractor={item => item.id}
-        />
+      <FlatList
+        showsVerticalScrollIndicator={true}
+        persistentScrollbar={true}
+        data={stateCongress}
+        renderItem={({item}) => <Member congressman={item} selectedState={selectedState} navigation={navigation} />}
+        keyExtractor={(item) => item.id} />
     </SafeAreaView>
-  )
-};
+  );
+}
 
 export default MembersList;
 
@@ -26,7 +35,7 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   titleTop: {
-    color: "darkblue",
+    color: 'darkblue',
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -34,7 +43,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   title: {
-    color: "darkblue",
+    color: 'darkblue',
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
