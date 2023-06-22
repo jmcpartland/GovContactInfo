@@ -2,13 +2,20 @@
 import React, {useState, useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity, SafeAreaView, StatusBar} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
+import SearchBar from './SeachBar';
 import {states} from './utils';
 import {DataContext} from './context';
 
 const Home = ({navigation}) => {
   const [selectedState, setSelectedState] = useState();
   const allCongress = useContext(DataContext);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const stateCongress = allCongress.filter((c) => c.state === states[selectedState]);
+  
+  // const handleSearch = (searchTerm) => {
+  //   setSearchTerm(searchTerm)
+  // };
 
   const statesList = Object.keys(states).map((s) => {
     return <Picker.Item key={s} label={s} value={s} />;
@@ -27,6 +34,9 @@ const Home = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* <Text>Search for your Congressman: </Text> */}
+      {/* <SearchBar /> */}
+
       <Text style={styles.title}>
         Select State
       </Text>
@@ -48,6 +58,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: StatusBar.currentHeight,
+    margin: 20,
   },
   title: {
     color: 'darkblue',

@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
     marginBottom: 15,
     padding: 12,
-    backgroundColor: '#fff',
-    // borderColor: '#fff',
-    // borderWidth: 1,
+    backgroundColor: 'lightblue',
+    borderColor: '#fff',
+    borderWidth: 1,
     borderRadius: 17,
   },
   shadowProp: {
