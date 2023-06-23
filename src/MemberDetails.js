@@ -17,6 +17,7 @@ const MemberDetails = ({route, navigation}) => {
 
     return (
       <View style={styles.container}>
+
         <View style={styles.nameContainer}>
           <Text style={styles.name}>
             {congressman.short_title} {congressman.first_name} {congressman.last_name}
