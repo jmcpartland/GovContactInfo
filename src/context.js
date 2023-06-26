@@ -8,7 +8,7 @@ function DataProvider({ children }) {
   const [allCongress, setAllCongress] = useState([]);
   const house = "https://api.propublica.org/congress/v1/117/house/members.json";
   const senate = "https://api.propublica.org/congress/v1/117/senate/members.json";
-  const localApi = "http://localhost:3000/state/CA";
+  const localApi = "http://localhost:3000/members";
 
   useEffect(() => {
     fetch(localApi, {

@@ -10,15 +10,18 @@ const SeachBar = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <AntDesign name="search1" size={24} color="black" />
-
-      <TextInput
-        placeholder='Search for Congressman'
-        style={styles.input} 
-        onChangeText={handleSearch}
-      />
-    </View>
+    <View>
+      <Text style={styles.heading}>Search for Congress Member:</Text>
+        <View style={styles.container}>
+          <AntDesign style={styles.searchIcon} name="search1" size={22} color="black" />
+          <TextInput
+            style={styles.input} 
+            placeholder='Search for Congressman'
+            onChangeText={handleSearch}
+            underlineColorAndroid="transparent"
+          />
+        </View>
+      </View>
   )
 }
 
@@ -28,13 +31,31 @@ const styles = StyleSheet.create({
     // flex: 1,
     flexDirection: 'row',
   },
-  input: {
-    margin: 5,
-    height: 40,
-    width: '90%',
-    padding: 5,
-    backgroundColor: '#fff',
+  heading: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
+  searchSection: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+},
+  searchIcon: {
+    paddingRight: 10,
+    // backgroundColor: '#fff',
+},
+  input: {
+    flex: 1,
+    paddingTop: 10,
+    paddingRight: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    backgroundColor: '#fff',
+    color: '#424242',
+},
 });
 
 export default SeachBar;
