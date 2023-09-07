@@ -9,3 +9,4 @@ npm install @react-native-picker/picker --save
 
 npm install @react-navigation/native-stack
 
+npx expo install expo-image

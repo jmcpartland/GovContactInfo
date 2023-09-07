@@ -11,7 +11,7 @@ const SeachBar = () => {
 
   return (
     <View>
-      <Text style={styles.heading}>Search for Congress Member:</Text>
+      <Text style={styles.title}>Search for Congress Member:</Text>
         <View style={styles.container}>
           <AntDesign style={styles.searchIcon} name="search1" size={22} color="black" />
           <TextInput
@@ -31,10 +31,12 @@ const styles = StyleSheet.create({
     // flex: 1,
     flexDirection: 'row',
   },
-  heading: {
-    fontSize: 15,
+  title: {
+    color: '#002868',
+    fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 10,
+    textAlign: 'center',
+    marginBottom: 20,
   },
   searchSection: {
     flex: 1,

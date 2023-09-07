@@ -46,6 +46,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginBottom: 80,
   },
+  image: {
+    height: 40,
+    width: 400,
+  },
   title: {
     fontSize: 27,
     fontWeight: 'bold',

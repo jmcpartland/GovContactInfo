@@ -23,6 +23,7 @@ const Member = ({congressman, navigation}) => {
 const styles = StyleSheet.create({
   name: {
     fontSize: 14,
+    color: '#fff',
     fontWeight: 'bold',
     marginBottom: 5,
   },
@@ -30,8 +31,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
     marginBottom: 15,
     padding: 12,
-    backgroundColor: 'lightblue',
-    borderColor: '#fff',
+    backgroundColor: '#002868',
+    borderColor: '#002868',
     borderWidth: 1,
     borderRadius: 17,
   },

@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   titleTop: {
-    color: 'darkblue',
+    color: '#002868',
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   title: {
-    color: 'darkblue',
-    fontSize: 22,
+    color: '#002868',
+    fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     textAlignVertical: 'top',

@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React, {useState, useContext} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, SafeAreaView, StatusBar} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, SafeAreaView, StatusBar, Image} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import SearchBar from './SeachBar';
 import {states} from './utils';
@@ -32,21 +32,24 @@ const Home = ({navigation}) => {
     });
   };
 
+
+
   return (
-    <SafeAreaView style={styles.container}>
-      <SearchBar />
-      <Text style={styles.title}>
-        Select State
-      </Text>
-      <Picker
-        selectedValue={selectedState}
-        onValueChange={(itemValue, itemIndex) => setSelectedState(itemValue)}>
-        {statesList}
-      </Picker>
-      <TouchableOpacity style={styles.button} onPress={selectState}>
-        <Text style={styles.buttonText}>OK</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+      <SafeAreaView style={styles.container}>
+        <SearchBar />
+        <Text style={styles.text}>- OR -</Text>
+        <Text style={styles.title}>
+          Select State
+        </Text>
+        <Picker
+          selectedValue={selectedState}
+          onValueChange={(itemValue, itemIndex) => setSelectedState(itemValue)}>
+          {statesList}
+        </Picker>
+        <TouchableOpacity style={styles.button} onPress={selectState}>
+          <Text style={styles.buttonText}>OK</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
   );
 };
 
@@ -58,8 +61,13 @@ const styles = StyleSheet.create({
     paddingTop: StatusBar.currentHeight,
     margin: 20,
   },
+  text: {
+    fontSize: 18,
+    textAlign: 'center',
+    marginTop: 20,
+  },
   title: {
-    color: 'darkblue',
+    color: '#002868',
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -70,9 +78,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 50,
     marginBottom: 35,
     borderRadius: 30,
-    backgroundColor: 'lightblue',
+    backgroundColor: '#002868',
   },
   buttonText: {
+    color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
     padding: 5,
